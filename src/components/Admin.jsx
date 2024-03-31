@@ -1,5 +1,5 @@
 import { getFirestore } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc,setDoc } from "firebase/firestore";
 import { app } from "../firebase";
 import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
@@ -38,18 +38,18 @@ function Admin(){
     // Signed up 
     const user = userCredential.user;
     console.log(user.email);
-
+    
     try {
-        const db = getFirestore(app);
-        const docRef = await addDoc(collection(db, "Teachers"), {
-          name,
-          email
-        });
-        console.log("Document written with ID: ", docRef.id);
-      } catch (e) {
-        console.error("Error adding document: ", e);
-      }
-  })
+      const db = getFirestore(app);
+      const docRef = await addDoc(collection(db, "Teachers"), {
+        name,
+        email
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+    })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;

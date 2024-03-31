@@ -13,7 +13,6 @@ function Teachers(){
           // Sign-out successful.
           alert("Signout was a success bhai kar liya");
           navigate('/');
-          setUser(null)
         }).catch((error) => {
           // An error happened.
           console.log(error);
@@ -23,6 +22,7 @@ function Teachers(){
     return (
         <div className="">
             <div className="">Hello {user.email}</div>
+            <div className="">Your user is is {user.uid}</div>
             <button onClick={signOutbutton}>Logout</button>
         </div>
     )

@@ -18,9 +18,9 @@ const Login = () => {
         // console.log(password)
     }
 
-    useEffect(()=>{
-        console.log(name)
-    }, [email, password])
+    // useEffect(()=>{
+    //     console.log(name)
+    // }, [email, password])
     
 
   function onClickHandler(e){
@@ -44,6 +44,7 @@ const Login = () => {
 const navigate = useNavigate();
   useEffect(() => {
     const auth = getAuth();
+    console.log('Hii');
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
@@ -56,6 +57,7 @@ const navigate = useNavigate();
         // User is signed out
         // ...
         alert("signed out he maa mata jii");
+        console.log(auth);
       }
     });
   }, []);
