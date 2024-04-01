@@ -3,6 +3,9 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { Navigate, useNavigate } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore"; 
+import { db } from "../firebase";
+
 const Login = () => {
 
     const[email, setEmail] = useState("");
@@ -42,24 +45,37 @@ const Login = () => {
 }
 
 const navigate = useNavigate();
+
+
   useEffect(() => {
     const auth = getAuth();
     console.log('Hii');
-    onAuthStateChanged(auth, (user) => {
+
+   onAuthStateChanged(auth, async (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
         const uid = user.uid;
-        console.log(uid);
-        navigate('/Teachers');
-        // ...
+        //console.log(uid);
+
+        const querySnapshot = await getDocs(collection(db, "Teachers"));
+        querySnapshot.forEach((doc) => {
+        if(doc.id === user.uid){
+          navigate('/Teachers');
+        }
+        });
+
+        const querySnapshot2 = await getDocs(collection(db, "Students"));
+        querySnapshot2.forEach((doc) => {
+        if(doc.id === user.uid){
+          navigate('/Students');
+        }
+        });
+
       } else {
-        // User is signed out
-        // ...
-        //alert("signed out he maa mata jii");
-        console.log(auth);
+        console.log('auth');
       }
     });
+
+
   }, []);
 
     return (

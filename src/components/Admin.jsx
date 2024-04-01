@@ -50,7 +50,6 @@ function Admin(){
     
     try {
       const db = getFirestore(app);
-      console.log(db);
       const docRef = doc(db,"Teachers/"+user.uid);
       await setDoc(docRef, {
         Name : Teachername, 

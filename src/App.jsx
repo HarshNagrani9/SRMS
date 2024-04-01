@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { app } from './firebase';
 import Teachers from './components/Teachers'
+import Students from './components/Students'
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/Admin" element={<Admin />} />
           <Route path="/Teachers" element={<Teachers />} />
+          <Route path="/Students" element={<Students />} />
         </Routes>
     </div>
   );
