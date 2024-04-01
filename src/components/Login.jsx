@@ -56,7 +56,7 @@ const navigate = useNavigate();
       } else {
         // User is signed out
         // ...
-        alert("signed out he maa mata jii");
+        //alert("signed out he maa mata jii");
         console.log(auth);
       }
     });
