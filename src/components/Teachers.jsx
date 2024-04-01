@@ -22,9 +22,10 @@ function Teachers(){
     return (
         <div className="">
             <div className="">Hello {user.email}</div>
-            <div className="">Your user is is {user.uid}</div>
-            <button onClick={signOutbutton}>Logout</button>
-        </div>
+              <div className="">Your user is is {user.uid}</div>
+              <button onClick={signOutbutton}>Logout</button>
+              <button>Add a class</button>
+            </div>
     )
 }
 
