@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { db } from "../firebase";
-import {doc, setDoc} from "firebase/firestore";
+import {doc, setDoc, updateDoc, arrayUnion, collection, getDocs} from "firebase/firestore";
+
 function Teachers(){
 
   const[creatClassTrigger, setCreatClassTrigger] = useState(false);
@@ -10,10 +11,15 @@ function Teachers(){
 
     const auth = getAuth();
     const user = auth.currentUser;
-    // useEffect(() => {
+     
+    // useEffect(async () => {
       
-    // })
-    console.log("user",user)
+      
+    // }, [])
+    // const querySnapshot = getDocs(collection(db, "Teachers"));
+    //     querySnapshot.forEach((doc) => {
+    //     console.log(`${doc.id} => ${doc.data()}`);
+    //     });
     const navigate = useNavigate();
     function signOutbutton(e){
       e.preventDefault();
@@ -36,9 +42,20 @@ function Teachers(){
       }
 
       async function crateClassSubmitButton(){
+        const classArray = [];
         await setDoc(doc(db, "Teachers/"+user.uid+'/'+createClass+'/Initial'), {
           Description : createClass + " class created"
         });
+        classArray.push(createClass);
+        try {
+          const docRef = doc(db,"Teachers/"+user.uid);
+          await updateDoc(docRef, {
+            Classes : arrayUnion(createClass)
+          })
+          console.log(docRef.id);
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
         setCreateClass("");
       }
 
@@ -67,6 +84,7 @@ function Teachers(){
                         <div onClick={crateClassSubmitButton}>Submit</div>
                         {/* <button>Submit</button> */}
                         {/* <button onClick={() => {console.log(createClass)}}>Submit</button> */}
+
                     </form>
               </div>
               : <div></div>

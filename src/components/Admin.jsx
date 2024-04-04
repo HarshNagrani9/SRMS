@@ -38,7 +38,16 @@ function Admin(){
         //console.log(name)
     }, [Teacheremail, Teacherpassword, Teachername])
     
+    // useEffect(()=>{
+    //   const db = getFirestore(app);
+    //   const documentRef = doc(db,"Teachers/C1FAe1Q8rQdmSC661QPDkZrYclC2");
 
+    //   documentRef.listCollections().then(collections => {
+    //     for (let collection of collections) {
+    //       console.log(`Found subcollection with id: ${collection.id}`);
+    //     }
+    //   });
+    // }, [])
   function onClickTeacherHandler(e){
     e.preventDefault();
     const auth = getAuth(app);
@@ -130,6 +139,7 @@ alert(errorCode);
 setStudentEmail("");
 setStudentName("");
 setStudentPassword("");
+setStudentRollNo("");
 }
 
 //Signup for Student and their info addtion to database is DONE !!!
