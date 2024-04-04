@@ -8,6 +8,7 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { app } from './firebase';
 import Teachers from './components/Teachers'
 import Students from './components/Students'
+import CreateClass from './components/CreateClass'
 
 function App() {
 
@@ -53,6 +54,7 @@ function App() {
           <Route path="/Admin" element={<Admin />} />
           <Route path="/Teachers" element={<Teachers />} />
           <Route path="/Students" element={<Students />} />
+          <Route path="/CreateClass" element={<CreateClass />} />
         </Routes>
     </div>
   );

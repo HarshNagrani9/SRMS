@@ -55,7 +55,6 @@ const navigate = useNavigate();
       if (user) {
         const uid = user.uid;
         //console.log(uid);
-
         const querySnapshot = await getDocs(collection(db, "Teachers"));
         querySnapshot.forEach((doc) => {
         if(doc.id === user.uid){
@@ -71,7 +70,7 @@ const navigate = useNavigate();
         });
 
       } else {
-        console.log('auth');
+        navigate('/')
       }
     });
 
