@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import {useNavigate } from "react-router-dom";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { db } from "../firebase";
@@ -93,7 +93,7 @@ function Teachers(){
                 setCreatClassTrigger(!creatClassTrigger)
                 }}>Add a class</button>
                 {CurrTeacherClasses.map((eachClass) => (
-                          <div>{eachClass}</div>
+                  <div>{eachClass}</div>
                 ))}
               {creatClassTrigger 
               ? <div>
